@@ -21,6 +21,7 @@ stages:
   - format
   - init
   - validate
+  - apply
 
 format-job:
   stage: format
@@ -47,3 +48,10 @@ validate:
   stage: validate
   script:
     - terraform validate
+
+apply-configuration:
+  stage: apply
+  script:
+    - export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    - export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    - terraform apply -auto-approve
