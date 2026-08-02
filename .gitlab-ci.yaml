@@ -6,7 +6,7 @@ stages:
 build-job:
   stage: build
   script:
-    - echo  "build"
+    - echo  "build job"
 
 test-job:
   stage: test
