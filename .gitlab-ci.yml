@@ -5,6 +5,11 @@ default:
     name: hashicorp/terraform
     entrypoint: [""] # to override the default entrypoint command
   timeout: 15 minutes
+  cache:
+    - key: $CI_PIPELINE_ID-terraform-cache
+      paths:
+        - .terraform/
+        - .terraform.lock.hcl
 
 variables:
   TF_USERNAME: ${GITLAB_USERNAME}
@@ -21,6 +26,8 @@ format-job:
   stage: format
   script:
     - terraform fmt
+  cache: []
+  allow_failure: true
 
 download-provider:
   stage: init
