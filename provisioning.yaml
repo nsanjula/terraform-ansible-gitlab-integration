@@ -1,0 +1,22 @@
+---
+- name: installing, enabling httpd and serving web page
+  hosts: all
+  become: true
+  remote_user: ec2-user
+  tasks:
+    - name: install httpd
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: start and enable httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: copy the index.html
+      ansible.builtin.copy:
+        src: ./index.html
+        dest: /var/www/html/index.html
+        backup: yes
