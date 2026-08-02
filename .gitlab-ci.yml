@@ -59,9 +59,12 @@ apply-configuration:
     - terraform apply -auto-approve
 
 .ansible:
+  image:
+    name: alpinelinux/ansible
+    entrypoint: [""]
   stage: configure
   script:
-    - echo "ansible configuration"
+    - echo ""
 
 destroy-infra:
   when: manual
