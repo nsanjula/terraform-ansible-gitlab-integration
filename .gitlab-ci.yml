@@ -23,6 +23,7 @@ stages:
   - validate
   - apply
   - configure
+  - destroy
 
 format-job:
   stage: format
@@ -57,7 +58,15 @@ apply-configuration:
     - export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
     - terraform apply -auto-approve
 
-ansible:
+.ansible:
   stage: configure
   script:
     - echo "ansible configuration"
+
+destroy-infra:
+  when: manual
+  stage: destroy
+  script:
+    - export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    - export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    - terraform destroy -auto-approve
