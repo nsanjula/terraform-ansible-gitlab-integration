@@ -15,6 +15,7 @@ variables:
 stages:
   - format
   - init
+  - validate
 
 format-job:
   stage: format
@@ -34,3 +35,8 @@ download-provider:
         -backend-config=lock_method=POST \
         -backend-config=unlock_method=DELETE \
         -backend-config=retry_wait_min=5
+
+validate:
+  stage: validate
+  script:
+    - terraform validate
