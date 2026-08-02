@@ -1,19 +1,13 @@
+default:
+  image:
+    name: hashicorp/terraform
+    entrypoint: [""] # to override the default entrypoint command
+  timeout: 15 minutes
+
 stages:
-  - build
-  - test
-  - deploy
+  - format
 
-build-job:
-  stage: build
+format-job:
+  stage: format
   script:
-    - echo  "build job"
-
-test-job:
-  stage: test
-  script:
-    - echo  "test"
-
-deploy-job:
-  stage: deploy
-  script:
-    - echo  "deploy"
+    - terraform fmt
