@@ -74,7 +74,7 @@ ansible:
     - ssh-add "$SSH_PRIVATE_KEY"
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ansible-playbook -i hosts install-apache.yml
+    - ansible-playbook -i hosts provisioning.yaml
   cache: []
 
 destroy-infra:
