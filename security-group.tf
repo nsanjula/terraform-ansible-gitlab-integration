@@ -9,7 +9,7 @@ resource "aws_security_group" "terra-gitlab-sg" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh_from_my_ip" {
   security_group_id = aws_security_group.terra-gitlab-sg.id
-  cidr_ipv4         = "101.2.180.65/32"
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
