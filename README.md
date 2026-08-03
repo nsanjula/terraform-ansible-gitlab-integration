@@ -21,29 +21,9 @@ The main goal of the project is to show how cloud infrastructure can be created,
 
 ## Architecture Summary
 
-The project follows a simple but realistic DevOps automation architecture:
+The project follows a simple DevOps automation architecture:
 
-```text
-GitLab Repository
-        |
-        v
-GitLab CI/CD Pipeline
-        |
-        v
-Terraform
-        |
-        v
-AWS EC2 + Security Group + Key Pair
-        |
-        v
-Generated hosts Inventory
-        |
-        v
-Ansible
-        |
-        v
-Apache Web Server Serving index.html
-```
+![GitLab pipeline architecture](images/Gitlab%20pipeline.png)
 
 Terraform is responsible for building the infrastructure layer in AWS. After the EC2 instance is created, its public IP address is written into a `hosts` file. That file acts as the Ansible inventory, allowing the configuration stage to connect to the instance and install the required software.
 
@@ -179,17 +159,17 @@ This gives the project a visible deployment result instead of stopping at infras
 
 ```text
 terraform-ansible-gitlab-integration/
-|-- README.md
-|-- .gitignore
-|-- backend.tf
-|-- provider.tf
-|-- variables.tf
-|-- main.tf
-|-- security-group.tf
-|-- key-pair.tf
-|-- provisioning.yaml
-|-- index.html
-`-- terra-gitlab-key.pub
+├── README.md
+├── .gitignore
+├── backend.tf
+├── provider.tf
+├── variables.tf
+├── main.tf
+├── security-group.tf
+├── key-pair.tf
+├── provisioning.yaml
+├── index.html
+└── terra-gitlab-key.pub
 ```
 
 ### File Responsibilities
